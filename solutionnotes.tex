@@ -1,0 +1,266 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[sexy]{evan}
+\usepackage{answers}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=teal
+}
+
+\begin{document}
+\title{Mock Olympiad Solutions}
+\author{Prakrit Gajurel}
+\date{\today}
+\renewcommand*\contentsname{Table of Contents}
+\maketitle
+
+\epigraph{As two clowns at the mercy of fate, let's fight this out
+fair and square.}
+{Natsuki Subaru}
+
+Here's the set of solutions I've compiled for the SOMAES and MIN 
+Physics and Math mock olympiad happening on August 16. These 
+solutions are intended as a reference, and students may use different 
+valid approaches. If something in a solution in this file is unclear, feel free 
+to assume it and move on with the rest of the solution. In grading, however, any 
+mathematically sound solution should receive full credit.
+
+
+
+\tableofcontents
+
+\newpage
+
+\section{Official Solutions}
+
+\subsection{Solution/s to Problem 1}
+
+\begin{problem}
+    Triangle $MIN$ is isosceles with $MI = MN$. Medians $\overline{IB}$ and
+    $\overline{NA}$ are perpendicular to each other, and $IB = NA = 12$.
+    Find, with proof, the area of $\triangle MIN$.
+\end{problem}
+
+\begin{remark}
+    In what follows, we denote by $[X]$ the area contained within a polygon 
+    $X$.
+\end{remark}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{amc10a problem.png}
+    \caption{Diagram for the problem.}
+\end{figure}
+
+\subsubsection{Solution 1(areas)}
+
+\begin{proof}
+    We show that the answer is $96$. \\
+    It's easy to observe that $[IABN] = 3[MBA]$, and also,
+    \[
+    [IABN] = \frac 12 (IB \cdot NA) = 72
+    \]
+    Giving $[MIN] = \dfrac 43 [IABN] = 96$.
+\end{proof}
+
+\subsubsection{Solution 2(centroid properties)}
+
+\begin{proof}
+    Let $G := IB \cap NA$ and let $C$ be the midpoint of $IN$.
+    As $G$ is the centroid, it follows that
+    $\dfrac{NG}{GA} = \dfrac 21$ giving $NG = 8$ and $GA = 4$,
+    similarly we obtain $IG = 8 = 2GB$. Pythagoras on $\triangle AGI$
+    gives $IA = AM = BM = NB = 4\sqrt5$, and Pythagoras on $\triangle IGN$
+    gives $IN = 8\sqrt2 = 2CN$. Again, Pythagoras on $\triangle MNC$ gives 
+    $MC = 12\sqrt2$, and we get our required answer as:
+    \[
+    [MIN] = \frac12 (MC \cdot IN) = \frac 12 (12\sqrt2 \cdot 8\sqrt2) = 96
+    \]
+    as desired.
+\end{proof}
+
+\subsubsection{Solution 3(cartesian bash)}
+
+\begin{proof}
+    We proceed in the Cartesian plane. Without loss of generality,
+    let $I = (0,0)$ and $N = (n,0)$, giving $M = \left( \dfrac n2, h\right)$.
+    Since $A$ and $B$ are the midpoints of $MI$ and $MN$, we obtain:
+    \[
+    A = \left( \frac n4, \frac h2 \right),
+    \quad B = \left( \frac{3n}{4}, \frac h2 \right)
+    \]
+    Also, we obtain:
+    \[
+    \overrightarrow{IB} = \left\langle \frac{3n}{4}, \frac h2 \right\rangle,
+    \quad \overrightarrow{NA} = \left\langle -\frac{3n}{4}, \frac h2 \right\rangle
+    \]
+    As $IB \perp NA$, we get that $h = \dfrac{3n}{2}$. Also using that $IB = 12$
+    gives $n^2 = 128$ by the distance formula, giving:
+    \[
+    [MIN] = \frac 12 (nh) = \frac 12 \left( \frac{3n^2}{2} \right) = \boxed{96}.
+    \]
+\end{proof}
+
+\newpage
+
+\subsection{Solution/s to Problem 2}
+
+\begin{problem}
+    You are given that $x$ and $y$ are real numbers.
+
+    \begin{enumerate}
+        \item Given that $x+y$ and $x+y^2$ are rational numbers, is it always
+        true that $x$ and $y$ are also rational numbers?
+
+        \item Given that $x+y$, $x+y^2$, and $x+y^3$ are rational numbers,
+        is it always true that $x$ and $y$ are also rational numbers?
+    \end{enumerate}
+\end{problem}
+
+\subsubsection{Solution 1}
+
+\begin{proof}
+    Part $(1)$ is pretty straightforward. Obviously $\sqrt{p}$ for any prime
+    $p$ is always irrational, and just considering something like 
+    $x = -\dfrac{\sqrt p}{2}$ and $y = \dfrac{1+\sqrt{p}}{2}$ gives us that 
+    the answer is no. \\ \\
+
+    For part $(2)$, the answer is yes. Define the following:
+    \[
+    A = (x+y^2) - (x+y) = y(y-1), \qquad B = (x+y^3) - (x+y^2) = y^2(y-1)
+    \]
+    Obviously $A$ and $B$ are rational. When $A = 0$, we have $y(y-1)=0$ giving
+    $y=0$ or $y=1$ giving $y$ rational, and so is $x = (x+y)-y$. When $A \neq 0$,
+    $\dfrac{B}{A} = y$ is obviously rational, and of course, so is $x = (x+y)-y$. 
+    Done.
+\end{proof}
+
+\newpage
+
+\subsection{Solution/s to Problem 3}
+
+\begin{problem}
+    For every positive integer $n$, express, in terms of $n$, the number
+    of $n$-digit positive integers satisfying both of the following conditions:
+
+    \begin{itemize}
+        \item No two consecutive digits are equal.
+        \item The last digit is prime.
+    \end{itemize}
+\end{problem}
+
+\subsubsection{Solution 1}
+
+\begin{proof}
+    Let $a_n$ denote the number of valid $n$-digit numbers whose last digit
+    is prime. We claim that the answer is $a_n = \dfrac 25 (9^n-(-1)^n)$.
+    We first begin by a counting argument. \\
+
+    If we have the $n$-digit number, the last digit must be one of $2$, 
+    $3$, $5$, or $7$. Let us consider a single one of these. Then, the 
+    second last digit can be any number from $0$ to $9$ excluding the 
+    prime digit we chose, giving us $9$ choices. Continuing this for the
+    rest of the $n-1$ digits gives us an answer of $9^{n-1}$, but we had 
+    $4$ choices for our primes so it is $4 \cdot 9^{n-1}$. We observe, however, 
+    that the first digit could end up being $0$, giving us NOT the value of $a_n$
+    but the value of $a_{n-1}$ and so to account for those cases, we add $a_{n-1}$ 
+    to get our recursion $a_n + a_{n-1} = 4 \cdot 9^{n-1}$. \\
+
+    Solving the recursion, we get:
+    \begin{align*}
+        a_n
+        &= 4 \cdot 9^{n-1} - a_{n-1} \\
+        &= 4 \cdot 9^{n-1} - 4 \cdot 9^{n-2} + a_{n-2} \\
+        &= 4(9^{n-1} - 9^{n-2} + 9^{n-3} - \dots) \\
+        &= 4 \left( \frac{9^n-(-1)^n}{10} \right) \\
+        &= \frac25 (9^n-(-1)^n)
+    \end{align*}
+    We're done!
+\end{proof}
+
+\newpage
+
+\subsection{Solution/s to Problem 4}
+
+\begin{problem}
+    Ram and Hari have created a program that,
+    given a list of $n$ numbers
+    $a_1, a_2, \dots, a_n$,
+    calculates a list
+    $b_1, b_2, \dots, b_n$
+    such that, for each $1 \le k \le n$, the number $b_k$ is the number of
+    times $a_k$ appears in the list. For example, the list
+    \[
+    1, \,2, \,3, \,1
+    \]
+    outputs
+    \[
+    2,\,1,\,1,\,2.
+    \]
+
+    Next, Ram asks Hari to run the program on a list of $2083$ numbers. He then
+    asks him to apply the program to the resulting list, and so on, until a
+    number greater than or equal to $k$ appears in the list. Find, with proof,
+    the largest value of $k$ for which, whatever the initial list of $2083$
+    positive integers is, it is always possible for Hari to do what Ram asked.
+\end{problem}
+
+\bigskip
+
+\subsubsection{Solution 1}
+
+\begin{proof}
+    Define the $frequency$ of a number $x$ to be the number of times $x$ appears 
+    in a list. \\
+
+    We begin by proving the following claim:
+    \begin{claim}
+        The sequence of the frequencies for each position of the list is bounded 
+        and non-decreasing.
+        \begin{proof}
+            We first show that the sequence is bounded. Since the list contains
+            exactly $n=2083$ numbers, a number can appear at most $2083$ times.
+            Also, a number must appear at least $1$ time in the list. Therefore,
+            every number generated must be between $1$ and $2083$, giving us that
+            our sequence is bounded. \\
+
+            Consider in the first step, any number $x$ that appears $c$ times. 
+            Then, in the list generated, the number $c$ will be present at least 
+            $c$ times. The "at least" portion comes from the fact that multiple 
+            distinct values in the original list could have the same frequency 
+            $c$. Again, consider that number $c$ in the new list that appears $d$ 
+            times. So, in the next list, all of the $c$'s turn into $d$'s, which 
+            guarantees that the frequency of $d$ in the new list is $e$ where
+            $e \ge d$. Therefore, the sequence of the frequencies of the elements 
+            is non-decreasing.
+        \end{proof}
+    \end{claim}
+
+    Since that sequence is bounded above and is non-decreasing, it must 
+    eventually reach a constant state. Obviously, in that constant list, 
+    any number $x$ will appear exactly $x$ times. We claim that the maximum 
+    possible value of $k$ is $k=65$. \\ \\
+
+    For our construction, just consider the following sequence:
+    \[
+    1, \,2, \,2, \,3, \,3, \,3, \, \dots \,, \, 65, \, 65
+    \]
+    excluding all $62$ of the $62$s. This construction obviously works as the 
+    total number of items in the list is $\dfrac{65 \cdot 66}{2} - 62 = 2083$,
+    so we're done for the construction. \\ \\
+
+    We now show that $65$ is indeed the maximum. For the sake of contradiction,
+    assume that we have a valid list for when it becomes constant such that all
+    the numbers in the list are strictly less than $65$. Then, let the distinct numbers be 
+    denoted by $n_1, \, n_2, \, \dots \,, \, n_{m}$ where $m \le 64$ assuming without loss 
+    of generality that $n_1 < n_2 < \cdots < n_{m}$. This should give us that 
+    $n_1 + n_2 + \cdots + n_{m} = 2083$, however,
+    \[
+    n_1 < n_2 < \cdots < n_{m} < 65 \implies
+    n_1 + n_2 + \cdots + n_{m} \le 1 + 2 + \cdots + 64 < 2083,
+    \]
+    Contradiction! Thus, $65$ is the required answer.
+\end{proof}
+
+\end{document}
